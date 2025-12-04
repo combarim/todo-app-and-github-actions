@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # Copier le JAR généré par Maven
-COPY target/todo-app.jar app.jar
+COPY todo-app.jar app.jar
 
 # Exposer le port par défaut de Spring Boot
 EXPOSE 8080
