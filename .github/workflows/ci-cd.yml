@@ -57,8 +57,16 @@ jobs:
     needs: docker-build-and-push
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Install Railway CLI
         run: npm i -g @railway/cli
+
+      - name: Link Railway project
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway link <PROJECT_ID>
 
       - name: Deploy to Railway
         env:
