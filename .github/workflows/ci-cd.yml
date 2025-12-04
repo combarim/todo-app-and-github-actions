@@ -52,3 +52,15 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/todo-app:latest -f docker/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/todo-app:latest
+
+  deploy:
+    needs: docker-build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Railway CLI
+        run: npm i -g @railway/cli
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up --service todo-app
