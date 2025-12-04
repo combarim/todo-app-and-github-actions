@@ -1,5 +1,5 @@
 # Utiliser l'image officielle OpenJDK 21
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk-alpine
 
 # Crée un dossier pour l'application
 WORKDIR /app
